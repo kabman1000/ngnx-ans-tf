@@ -1,0 +1,23 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
+# Configure the AWS Provider
+provider "aws" {
+  region = var.region
+  profile = var.profile
+}
+
+# Create an instance
+resource "aws_instance" "eot1" {
+  ami           = "ami-0f9ce67dcf718d332"
+  instance_type = "t2.micro"
+  key_name = "mondzi"
+  vpc_security_group_ids = ["sg-0e47a82f9ab7ff906","sg-013b2a9de701e872c"]
+
+}
